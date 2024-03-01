@@ -17,3 +17,9 @@ It will be useful to understand the security of applications running in the cont
 Pls check out this <repo>.
 1. SAST
 2. DAST
+
+
+## References
+1. Does running container with GID 0 cause security issue?
+https://access.redhat.com/solutions/6970217
+2. ??
