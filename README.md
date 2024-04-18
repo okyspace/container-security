@@ -17,10 +17,10 @@ In this table, tools for quality checks are also included.
 | Security          | Container Malware Detection  | Prisma Cloud, SEP            |                             |
 | Security          | Container CVE Detection      | Openshift ACS                |                             |
 | Security          | Container Virus Detection    | SEP                          |                             |
-| Quality           | Static Code Analysis         | Parasoft                     | ESlint                      |
-| Quality           | Code Coverage                | ??                           |                             |
+| Quality           | Static Code Analysis         | Parasoft                     | ESlint , Pylint             |
+| Quality           | Code Coverage                | McCabe                       |                             |
 | Quality           | SCA                          | Prisma Cloud                 |                             |
-| Security          | SAST (whitebox)              | Parasoft, Fortify            | CodeQL                      |
+| Security          | SAST (whitebox)              | Parasoft, Fortify            | CodeQL (For Github)         |
 | Security          | DAST (blackbox)              | WebInspect                   |                             |
 
 - SCA is usually more concern for vendor selling products, to avoid licensing issue
