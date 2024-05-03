@@ -114,6 +114,21 @@ Question to find out:
 
 
 
+## Security Context for pod / container
+```
+# security context to run pod with restricted-v2 scc
+  containerSecurityContext:
+    runAsUser: *uid (openshift project uid)
+    runAsNonRoot: true
+    runAsGroup: 0 (Usually this is not set, so default is 0)
+    allowPrivilegeEscalation: false
+    capabilities:
+      drop: ["ALL"]
+    seccompProfile:
+      type: RuntimeDefault
+
+```
+
 ## References
 1. Does running container with GID 0 cause security issue?
 https://access.redhat.com/solutions/6970217
