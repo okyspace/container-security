@@ -39,4 +39,6 @@ In this table, tools for quality checks are also included.
 ## References
 1. Does running container with GID 0 cause security issue?
 https://access.redhat.com/solutions/6970217
-2. ??
+2. Why do containerized processes run with a GID of 0 by default on OpenShift ?
+https://access.redhat.com/solutions/6966929
+3. 
