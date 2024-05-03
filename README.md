@@ -62,6 +62,14 @@ In this table, tools for quality checks are also included.
 -rw-r--r--. 1 root root unconfined_u:object_r:admin_home_t:s0        14 May  4 01:07 test2.html
 ```
 
+## Proper use of Linux Folders
+| folder     |                                                             |
+| -          | -                                                           |
+| /etc       | configurations and settings for the system (e.g. .conf)     |
+| /usr       | is used for "user programs". Usually your package manager installs all the binaries, shared files etc. from all programs here (except config files, which go to /etc). You can check /usr/bin for binaries, /usr/share for shared files (media, etc), /usr/share/doc for documentation,...     |
+| /opt       | there are "other" programs usually put (mostly binary programs, or programs installed from other sources (not the default package manager). Some programs like that (usually compiled) also go to "/usr/local"    |
+| /var       | is usually used for log files, 'temporary' files (like mail spool, printer spool, etc), databases, and all other data not tied to a specific user. Logs are usually in "/var/log", databases in "/var/lib" (mysql - "/var/lib/mysql"), etc.    |
+
 
 ## References
 1. Does running container with GID 0 cause security issue?
