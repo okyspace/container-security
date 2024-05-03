@@ -34,7 +34,18 @@ In this table, tools for quality checks are also included.
 
 ## When to use docker vs podman
 - In general, there are some cases where you do not have control over the container and you may need to run with port < 1024, e.g vendor product. You may want to run it with docker instead of podman, since there is no good way to run podman with root.
-- Although you can set sudo sysctl net.ipv4_xxxxx_port_start=0 to allow running of ports < 1024 with non-root, but this is pending assessment if there will be cyber concerns. 
+- Although you can set sudo sysctl net.ipv4_xxxxx_port_start=0 to allow running of ports < 1024 with non-root, but this is pending assessment if there will be cyber concerns.
+
+## Selinux
+1. Security-Enhanced Linux (SELinux) is a security architecture for Linux® systems that allows administrators to have more control over who can access the system.
+2. Selinux setting is found in /etc/sysconfig/selinux or /etc/selinux/config.
+3. Default setting is "enforcing" and "targetting".
+
+![image](https://github.com/okyspace/container-security/assets/55354225/eed802eb-b3b0-4533-b4fb-953e2b478fa9)
+
+
+![image](https://github.com/okyspace/container-security/assets/55354225/eb02f460-73d2-4ff4-8187-99a5c73bf9e6)
+
 
 ## References
 1. Does running container with GID 0 cause security issue?
