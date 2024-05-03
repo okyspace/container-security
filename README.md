@@ -7,7 +7,8 @@ The objective of this repo is to capture knowledge learnt and level up the under
 - When to use docker vs podman.
 
 ## Cyber concerns on running rootful container.
-To be added.
+1. root user in container can have excess rights to access host, which can execute any malware, change configurations/settings.
+2. TO add on.
      
 ## Type of security scans and tools available
 In this table, tools for quality checks are also included. 
@@ -30,8 +31,34 @@ In this table, tools for quality checks are also included.
 ## How to build a rootless container
 ![image](https://github.com/okyspace/container-security/assets/55354225/d21bf8cb-a227-4fed-bc9c-9c37102f46c9)
 
+```
+# Example of Dockerfile to build rootless container image
+
+FROM redhat/ubi8:xxx
+# install whatever needed as yum install cannot be executed without root user.
+RUN yum install xxxx
+COPY . .
+
+# set user; set USER towards the end of the dockerfile, so process like apt install can still proceed with default root user first.
+# use gid 0, see the recommendation from redhat support and the security risk assessment. 
+USER 1000:0
+
+# grant necessary rights to folder to USER
+RUN chown 1000:0 /data
+ 
+```
+
 ## How to convert a rootful container to rootless.
 ![image](https://github.com/okyspace/container-security/assets/55354225/1160bd4b-fce3-43c9-993a-44b6ec07f911)
+
+## Checking built container for security issue
+- Usually the image can be built with uid 1000, gid 0.
+- uid 1000 is not a root user, so make sure the folder that the processes to be run in the container has the necessary r/w/x rights as the owner.
+- gid 0 might have some security concern.  Run the following command to check what extra file gid 0 can access. Assess if the files are of security concern. 
+```
+# inside the container
+find / -mount -type f -user root -group root \( -perm -g=r -o -perm -g=w \) -not \( -perm -o=r -o -perm -o=x \) -ls
+```
 
 ## When to use docker vs podman
 - In general, there are some cases where you do not have control over the container and you may need to run with port < 1024, e.g vendor product. You may want to run it with docker instead of podman, since there is no good way to run podman with root.
@@ -78,3 +105,4 @@ https://access.redhat.com/solutions/6970217
 https://access.redhat.com/solutions/6966929
 3. Linux File Permission. https://www.redhat.com/sysadmin/linux-file-permissions-explained
 4. Linux Selinux with examples. https://www.computernetworkingnotes.com/linux-tutorials/selinux-explained-with-examples-in-easy-language.html
+5. https://www.howtogeek.com/devops/why-processes-in-docker-containers-shouldnt-run-as-root/#:~:text=Although%20it%20can%20seem%20like,root%20account%20on%20your%20host.
