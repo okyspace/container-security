@@ -48,10 +48,25 @@ In this table, tools for quality checks are also included.
 ![image](https://github.com/okyspace/container-security/assets/55354225/eb02f460-73d2-4ff4-8187-99a5c73bf9e6)
 
 
+### Example
+```
+# files created at /home
+-rw-r--r--. 1 root root unconfined_u:object_r:admin_home_t:s0    14 May  4 01:06 test1.html
+-rw-r--r--. 1 root root unconfined_u:object_r:admin_home_t:s0    14 May  4 01:07 test2.html
+```
+
+```
+# cp file change type context but not move.. 
+-rw-r--r--. 1 root root unconfined_u:object_r:httpd_sys_content_t:s0 29 May  3 22:01 index.html
+-rw-r--r--. 1 root root unconfined_u:object_r:httpd_sys_content_t:s0 14 May  4 01:07 test1.html
+-rw-r--r--. 1 root root unconfined_u:object_r:admin_home_t:s0        14 May  4 01:07 test2.html
+```
+
+
 ## References
 1. Does running container with GID 0 cause security issue?
 https://access.redhat.com/solutions/6970217
 2. Why do containerized processes run with a GID of 0 by default on OpenShift ?
 https://access.redhat.com/solutions/6966929
 3. Linux File Permission. https://www.redhat.com/sysadmin/linux-file-permissions-explained
-4. Linux Selinux. https://www.computernetworkingnotes.com/linux-tutorials/selinux-explained-with-examples-in-easy-language.html
+4. Linux Selinux with examples. https://www.computernetworkingnotes.com/linux-tutorials/selinux-explained-with-examples-in-easy-language.html
