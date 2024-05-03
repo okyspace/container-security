@@ -98,6 +98,22 @@ find / -mount -type f -user root -group root \( -perm -g=r -o -perm -g=w \) -not
 | /var       | is usually used for log files, 'temporary' files (like mail spool, printer spool, etc), databases, and all other data not tied to a specific user. Logs are usually in "/var/log", databases in "/var/lib" (mysql - "/var/lib/mysql"), etc.    |
 
 
+## Why using GID 0 for container running in openshift is OK?
+1. Openshift "restricted-v2" scc limits the running of pod within a defined uid range.
+2. Nodes are on RHCOREOS, which is immutable, only allow few settings to be changed.
+3. Even with GID 0, only /etc/libaudit.conf is accessible, which is assessed to be low risk.
+4. Even if GID 0 can escape from ther container to host, the host selinux will limit the access to most files.
+
+Question to find out:
+1. How can GID 0 escape from the container to host?
+2. Will GID 0 able to change selinux, file permission on RHCOREOS?
+3. Does chown folder permission to defined USER helps in accessibility? Or it is strictly accessible due to GID 0? Should be.
+4. Is it really safee? Container can be built with malware and brought into OCP and triggered by GID 0? Containers should be scanned by SEP / Prisma Cloud to detect malware as another layer of defence.
+5. Will malware be able to propagate from one node to another?
+6. Can we run executable in RHCOREOS?
+
+
+
 ## References
 1. Does running container with GID 0 cause security issue?
 https://access.redhat.com/solutions/6970217
