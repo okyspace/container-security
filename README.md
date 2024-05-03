@@ -18,7 +18,7 @@ In this table, tools for quality checks are also included.
 | Security          | Container Malware Detection  | Prisma Cloud, SEP            |                             |
 | Security          | Container CVE Detection      | Openshift ACS                |                             |
 | Security          | Container Virus Detection    | SEP                          |                             |
-| Quality           | Cyclomatic Complexity        | Parasoft                     |                             |
+| Quality           | Cyclomatic Complexity        | Parasoft                     | Radon                       |
 | Quality           | Static Code Analysis         | Parasoft                     | ESlint , Pylint             |
 | Quality           | Code Coverage                | McCabe                       |                             |
 | Quality           | SCA                          | Prisma Cloud                 |                             |
