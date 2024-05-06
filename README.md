@@ -129,6 +129,18 @@ Question to find out:
 
 ```
 
+## --fix-permissions
+The --fix-permissions option is used to fix permissions issues when running a container. It's commonly used with the docker command, but also applies to other container runtimes like Podman.
+When you run a container, the container process runs as a non-root user (usually a random UID) for security reasons. However, this can lead to permissions issues when accessing files or directories owned by the root user or other users. The --fix-permissions option helps resolve these issues by:
+Changing the ownership of the container's runtime files (e.g., /tmp, /run) to the container's user.
+Setting the correct permissions on volumes mounted from the host system.
+By using --fix-permissions, you ensure that the container process can access the necessary files and directories without encountering permissions errors.
+Here's an example:
+docker run --fix-permissions -it my_image /bin/bash
+In this example, the --fix-permissions option is used to fix permissions issues when running the my_image container.
+Keep in mind that --fix-permissions only fixes permissions issues related to the container's runtime and mounted volumes. It's not a silver bullet for all permissions problems, and you may still need to adjust permissions or use other options (like --user or --group-add) to resolve specific issues.
+
+
 ## References
 1. Does running container with GID 0 cause security issue?
 https://access.redhat.com/solutions/6970217
